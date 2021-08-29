@@ -1,0 +1,25 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/orders.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (products.length > 0) { %>    
+                <% for (let product of products) { %>
+                    <ul class="cart__item-list"></ul>
+                        <li class="cart__item">
+                            <h1 class="titleH"><%= product.title %></h1>
+                            <h3> total cost of your order : $<%= product.price %></h3>
+                            <form action="/orders-delete-item" method="POST">
+                                <input type="hidden" value="<%= product.orderId %>" name="orderId">
+                                <button class="btn danger" type="submit">Cancel your Order</button>
+                            </form>
+                        </li>
+                    </ul>
+                <% } %>
+            <% } else { %>
+                <h1>You dont have any orders!</h1>
+            <% } %>
+        </main>
+        <%- include('../includes/end.ejs') %>
